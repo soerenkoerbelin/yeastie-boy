@@ -27,3 +27,11 @@ Backhefe wird, bezogen auf die Mehlmenge, mit etwa 3 bis 6 % den Hefeteigen zuge
                                                   Route3: Take part
                                                   --> About etc...
           
+
+Route1: I already have a recipe
+    -> You are out of yeast and have to calculate the new time of rise? Other way: Do you want to scale down the other ingridients?!
+    
+    -> You have to leave for time x: How long will the rise of time be when putting into fridge or reducing the amount of yeast?
+    
+    -> Side effetcts: My yeast is > 2 weeks or > 3 weeks (checkboxes)
+    -> 

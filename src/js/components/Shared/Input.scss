@@ -1,0 +1,19 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  height: 3em;
+}
+
+.basic-input {
+  width: 8em;
+  font-size: 0.85em;
+  border: none;
+  border-bottom: 1px dotted #92caf3;
+}
+
+.basic-input:focus {
+  outline: none;
+}
+
+.basic-label {
+}

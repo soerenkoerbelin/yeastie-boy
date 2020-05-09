@@ -1,17 +1,21 @@
 import React from "react";
 
+import Icon from "./../Shared/Icon";
 import "./Header.scss";
 
 function Header() {
   return (
-    <div className="header-container">
-      <div className="header-left">
-        <div className="icon">ICON</div>
-        <h3>YEASTIE BOYS</h3>
+    <div>
+      <div className="header-container">
+        <div className="header-left">
+          <Icon icon="yeast32" />
+          <h2>YEASTIE BOY</h2>
+        </div>
+        <div className="header-right">
+          <h3>fo' yo' dough</h3>
+        </div>
       </div>
-      <div className="header-right">
-          fo yo dough
-      </div>
+      <div className="wave"></div>
     </div>
   );
 }

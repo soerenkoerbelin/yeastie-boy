@@ -1,0 +1,10 @@
+.dotted-button {
+  font-size: 0.95em;
+  background-color: white;
+  border-radius: 25px;
+  border: 1px dotted #92caf3;
+}
+
+.dotted-button:hover {
+  transform: translateY(2.5px);
+}
