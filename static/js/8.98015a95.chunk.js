@@ -1,0 +1,2 @@
+(this["webpackJsonpyeastie-boy"]=this["webpackJsonpyeastie-boy"]||[]).push([[8],{38:function(e,t,n){"use strict";n.r(t);var a=n(0),s=n.n(a);t.default=function(){return s.a.createElement("h1",null,"Experimental")}}}]);
+//# sourceMappingURL=8.98015a95.chunk.js.map

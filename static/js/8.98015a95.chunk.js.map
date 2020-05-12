@@ -1,0 +1,1 @@
+{"version":3,"sources":["js/components/Experimental/Experimental.tsx"],"names":["Experimental"],"mappings":"iHAAA,2BAQeA,UANf,WACI,OACI","file":"static/js/8.98015a95.chunk.js","sourcesContent":["import React from 'react';\n\nfunction Experimental() {\n    return(\n        <h1>Experimental</h1>\n    )\n}\n\nexport default Experimental;"],"sourceRoot":""}

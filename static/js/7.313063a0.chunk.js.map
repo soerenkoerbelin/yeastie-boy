@@ -1,0 +1,1 @@
+{"version":3,"sources":["js/components/About/About.tsx"],"names":["About"],"mappings":"iHAAA,2BAQeA,UANf,WACI,OACI","file":"static/js/7.313063a0.chunk.js","sourcesContent":["import React from 'react';\n\nfunction About() {\n    return(\n        <h1>ABOUT</h1>\n    )\n}\n\nexport default About;"],"sourceRoot":""}

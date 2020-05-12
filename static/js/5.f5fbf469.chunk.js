@@ -1,0 +1,2 @@
+(this["webpackJsonpyeastie-boy"]=this["webpackJsonpyeastie-boy"]||[]).push([[5],{36:function(e,t,a){},40:function(e,t,a){"use strict";a.r(t);var n=a(0),o=a.n(n);a(36);t.default=function(){return o.a.createElement("div",null,o.a.createElement("div",{className:"wave-bottom"}),o.a.createElement("div",{className:"footer-container"},o.a.createElement("h2",null,"Footer")))}}}]);
+//# sourceMappingURL=5.f5fbf469.chunk.js.map
