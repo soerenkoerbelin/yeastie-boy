@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/yeastie-boy/precache-manifest.005c15697ed6ca7693e4d03c89bffe73.js"
+  "/yeastie-boy/precache-manifest.ddf5df7512927400e2b12b3ca4a2d075.js"
 );
 
 self.addEventListener('message', (event) => {

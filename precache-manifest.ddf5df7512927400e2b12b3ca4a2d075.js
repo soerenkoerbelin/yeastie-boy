@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e4791f854cb43c68ac6c50f6ec69fd2b",
+    "revision": "6b38a427211baea0bc4490426ba9daa5",
     "url": "/yeastie-boy/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/yeastie-boy/static/css/3.575eb8ac.chunk.css"
   },
   {
-    "revision": "261cc24ddf37b8f999c9",
-    "url": "/yeastie-boy/static/css/4.28dba93b.chunk.css"
+    "revision": "4c8a044efa523c100e82",
+    "url": "/yeastie-boy/static/css/4.12aa61cb.chunk.css"
   },
   {
     "revision": "371a58a56472ae6bc12e",
@@ -36,7 +36,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/yeastie-boy/static/js/3.bb30e370.chunk.js"
   },
   {
-    "revision": "261cc24ddf37b8f999c9",
+    "revision": "4c8a044efa523c100e82",
     "url": "/yeastie-boy/static/js/4.9b0d3d04.chunk.js"
   },
   {
@@ -60,7 +60,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/yeastie-boy/static/js/main.890b50ed.chunk.js"
   },
   {
-    "revision": "c1011ba0eac240a90222",
-    "url": "/yeastie-boy/static/js/runtime-main.9210fe73.js"
+    "revision": "12a0b11c5c2f9c22a438",
+    "url": "/yeastie-boy/static/js/runtime-main.04059055.js"
   }
 ]);
