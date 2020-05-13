@@ -35,3 +35,13 @@ Route1: I already have a recipe
     
     -> Side effetcts: My yeast is > 2 weeks or > 3 weeks (checkboxes)
     -> 
+
+    #
+    Scenario 1: 
+    - I have 20 Gr. of Dough, it takes 1hr for rising and the temperature is set to 25 °C
+    - Fill in the values into input fields
+
+    - I want to change: 
+      - The time -> 2hr -> Reduce yeast by X or temperature to Y 
+      - The yeast 
+      - The temperature
