@@ -1,9 +1,21 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
+
+import "./Experimental.scss";
+import DottedButton from "../Shared/DottedButton";
 
 function Experimental() {
-    return(
+  return (
+    <div>
+      <div className="top-row">
         <h1>Experimental</h1>
-    )
+        <Link to="/">
+          <DottedButton name="back" />
+        </Link>
+      </div>
+      <p>This section is still under construction!</p>
+    </div>
+  );
 }
 
 export default Experimental;

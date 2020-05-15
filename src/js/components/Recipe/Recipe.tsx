@@ -6,10 +6,26 @@ import { Link } from "react-router-dom";
 import Slider from "../Shared/Slider";
 import DottedButton from "../Shared/DottedButton";
 
+/*
+TODOS
+- Recalculate on state changes
+- use types
+*/
+
 function Recipe() {
-  const [yeast, setYeast] = useState(10);
-  const [temp, setTemp] = useState(21);
-  const [time, setTime] = useState(0.5);
+  const [yeast, setYeast] = useState(21);
+  const [temp, setTemp] = useState(10);
+  const [time, setTime] = useState(12);
+  const [changer, setChanger] = useState("time");
+  const [increase, setIncrease] = useState("increase");
+  const [changerAmount, setChangerAmount] = useState(0);
+
+  const [aType, setAType] = useState("");
+  const [bType, setBType] = useState("");
+  const [aResult, setAResult] = useState(0);
+  const [bResult, setBResult] = useState(0);
+
+  const YEAST_CONST: number = -0.1386294;
 
   const descText = (
     <p>
@@ -17,11 +33,36 @@ function Recipe() {
       temperature by changing one of the values. In case you are using older
       yeast or some sour dough, we implemented two check boxes to take this into
       account.<br></br>
-      Change two of the 
+      Use the sliders to configure your current setup.
     </p>
   );
 
-  function handleChange(e: any, type: string) {
+  let result: any;
+
+  if (aResult !== 0 && bResult !== 0) {
+    result = (
+      <div>
+        <div className="center-container">
+          <p>
+            Change {aType} to {aResult}
+          </p>
+        </div>
+        <div className="center-container">
+          <p>
+            Change {bType} to {bResult}
+          </p>
+        </div>
+      </div>
+    );
+  } else {
+    result = (
+      <div>
+        <p>Enter values and press calculate to get a result!</p>
+      </div>
+    );
+  }
+
+  function handleChange(e: any, type: any) {
     switch (type) {
       case "yeast":
         setYeast(e.target.value);
@@ -31,6 +72,69 @@ function Recipe() {
         break;
       default:
         setTime(e.target.value);
+        break;
+    }
+  }
+
+  function handleChangerValue(e: any) {
+    setChanger(e.target.value);
+  }
+
+  function handleIncreaseValue(e: any) {
+    setIncrease(e.target.value);
+  }
+
+  function handleChangeValue(e: any) {
+    setChangerAmount(e.target.value);
+  }
+
+  function changeTime() {}
+
+  function changeYeast() {
+    let newTOR: number;
+
+    if (increase === "increase") {
+      newTOR = +time + +changerAmount;
+      return yeast / newTOR;
+    } else {
+      newTOR = +time + -changerAmount;
+      return yeast * time;
+    }
+  }
+
+  function changeTemp() {
+    let newTOR: number;
+
+    const factor = time / Math.exp(YEAST_CONST * temp);
+
+    if (increase === "increase") {
+      newTOR = +time + +changerAmount;
+    } else {
+      newTOR = +time + -changerAmount;
+    }
+
+    return Math.floor(Math.log(newTOR / factor) / YEAST_CONST);
+  }
+
+  function calculate() {
+    switch (changer) {
+      case "yeast":
+        setAType("time");
+        setBType("temp");
+        break;
+      case "time":
+        setAType("yeast");
+        setBType("temp");
+        const aValue = changeYeast();
+        setAResult(aValue);
+        const bValue = changeTemp();
+        setBResult(bValue);
+        break;
+      case "temp":
+        setAType("yeast");
+        setBType("time");
+        break;
+      default:
         break;
     }
   }
@@ -46,6 +150,7 @@ function Recipe() {
       {descText}
       <div className="content">
         <form>
+          <p>My current setup: </p>
           <Slider
             id="yeast-input"
             min="1"
@@ -73,8 +178,61 @@ function Recipe() {
             label="hours of time to rise"
             onChange={(e: any) => handleChange(e, "time")}
           />
+
+          <div className="center-container">
+            <p>I want to change the: </p>
+            <select
+              value={changer}
+              onChange={(e: any) => handleChangerValue(e)}
+            >
+              <option value="yeast">Amount of yeast</option>
+              <option value="time">Time of rise</option>
+              <option value="temp">Temperature</option>
+            </select>
+          </div>
+
+          <div className="center-container">
+            <p>I want to {increase}: </p>
+            <select
+              value={increase}
+              onChange={(e: any) => handleIncreaseValue(e)}
+            >
+              <option value="increase">Increase</option>
+              <option value="decrease">Decrease</option>
+            </select>
+          </div>
+
+          <div className="center-container">
+            <p>By the amount of: </p>
+            <Slider
+              id="change-input"
+              min="0"
+              max="48"
+              step="0.25"
+              value={changerAmount}
+              label=""
+              onChange={(e: any) => handleChangeValue(e)}
+            />
+          </div>
+
+          {/* <p>Dec/Inc: {increase}</p>
+          <p>Changer: {changer}</p>
+          <p>Amount: {changerAmount}</p>
+
+          <p>Yeast: {yeast}</p>
+          <p>Time: {time}</p>
+          <p>Temp: {temp}</p>
+
+          <p>A: {aType}</p>
+          <p>B: {bType}</p> */}
         </form>
       </div>
+      <div className="center-container">
+        <button className="dotted-button" onClick={() => calculate()}>
+          Calculate
+        </button>
+      </div>
+      <div className="center-container">{result}</div>
     </div>
   );
 }
