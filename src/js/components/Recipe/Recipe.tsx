@@ -10,6 +10,9 @@ import DottedButton from "../Shared/DottedButton";
 TODOS
 - Recalculate on state changes
 - use types
+- Give hints
+
+- only change temp is working correctly right now!
 */
 
 function Recipe() {
@@ -42,14 +45,15 @@ function Recipe() {
   if (aResult !== 0 && bResult !== 0) {
     result = (
       <div>
+          <h3>Here are your results! You can</h3>
         <div className="center-container">
           <p>
-            Change {aType} to {aResult}
+            Change the <b>{aType}</b> to <b>{aResult}</b>
           </p>
         </div>
         <div className="center-container">
           <p>
-            Change {bType} to {bResult}
+            Change the <b>{bType}</b> to <b>{bResult}</b>
           </p>
         </div>
       </div>
@@ -57,7 +61,7 @@ function Recipe() {
   } else {
     result = (
       <div>
-        <p>Enter values and press calculate to get a result!</p>
+        <p>Enter values above and press calculate to get a result!</p>
       </div>
     );
   }
@@ -88,7 +92,27 @@ function Recipe() {
     setChangerAmount(e.target.value);
   }
 
-  function changeTime() {}
+  function calculateFactor() {
+    return time / Math.exp(YEAST_CONST * temp);
+  }
+
+  function timeTempYeastPrediction(newTOR: number, factor: number) {
+    return Math.floor(Math.log(newTOR / factor) / YEAST_CONST);
+  }
+
+  function changeTime() {
+    let newTOR: number;
+
+    const factor = calculateFactor();
+
+    if (increase === "increase") {
+      newTOR = +time + +changerAmount;
+    } else {
+      newTOR = +time + -changerAmount;
+    }
+
+    return timeTempYeastPrediction(newTOR, factor);
+  }
 
   function changeYeast() {
     let newTOR: number;
@@ -105,7 +129,7 @@ function Recipe() {
   function changeTemp() {
     let newTOR: number;
 
-    const factor = time / Math.exp(YEAST_CONST * temp);
+    const factor = calculateFactor();
 
     if (increase === "increase") {
       newTOR = +time + +changerAmount;
@@ -117,22 +141,32 @@ function Recipe() {
   }
 
   function calculate() {
+    let aValue;
+    let bValue;
     switch (changer) {
       case "yeast":
         setAType("time");
         setBType("temp");
+        aValue = changeTime();
+        setAResult(aValue);
+        bValue = changeTemp();
+        setBResult(bValue);
         break;
       case "time":
         setAType("yeast");
         setBType("temp");
-        const aValue = changeYeast();
+        aValue = changeYeast();
         setAResult(aValue);
-        const bValue = changeTemp();
+        bValue = changeTemp();
         setBResult(bValue);
         break;
       case "temp":
         setAType("yeast");
         setBType("time");
+        aValue = changeYeast();
+        setAResult(aValue);
+        bValue = changeTime();
+        setBResult(bValue);
         break;
       default:
         break;
@@ -150,7 +184,7 @@ function Recipe() {
       {descText}
       <div className="content">
         <form>
-          <p>My current setup: </p>
+          <h3>My current setup: </h3>
           <Slider
             id="yeast-input"
             min="1"
@@ -180,7 +214,7 @@ function Recipe() {
           />
 
           <div className="center-container">
-            <p>I want to change the: </p>
+            <p>I want to <b>change</b> the: </p>
             <select
               value={changer}
               onChange={(e: any) => handleChangerValue(e)}
@@ -192,7 +226,7 @@ function Recipe() {
           </div>
 
           <div className="center-container">
-            <p>I want to {increase}: </p>
+            <p>I want to <b>{increase}</b>: </p>
             <select
               value={increase}
               onChange={(e: any) => handleIncreaseValue(e)}
@@ -203,7 +237,7 @@ function Recipe() {
           </div>
 
           <div className="center-container">
-            <p>By the amount of: </p>
+            <p>By the <b>amount</b> of: </p>
             <Slider
               id="change-input"
               min="0"
@@ -214,17 +248,6 @@ function Recipe() {
               onChange={(e: any) => handleChangeValue(e)}
             />
           </div>
-
-          {/* <p>Dec/Inc: {increase}</p>
-          <p>Changer: {changer}</p>
-          <p>Amount: {changerAmount}</p>
-
-          <p>Yeast: {yeast}</p>
-          <p>Time: {time}</p>
-          <p>Temp: {temp}</p>
-
-          <p>A: {aType}</p>
-          <p>B: {bType}</p> */}
         </form>
       </div>
       <div className="center-container">

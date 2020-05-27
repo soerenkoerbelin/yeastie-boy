@@ -1,20 +1,35 @@
+@import "./../../../App.scss";
+
 .selection-panel {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-    grid-gap: .5em;
-    padding: 1em;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  grid-gap: 0.5em;
+  padding: 1em;
+  justify-items: center;
+  align-items: center;
 
-    .selection-item {
-        background-color: #92CAF3;
-        border-radius: 15px;
-        color: white;
-        font-weight: bold;
-        text-align: center;
+  .selection-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $baby-blue;
+    height: 6rem;
+    width: 7rem;
+    border-radius: 50px;
+    color: white;
+    font-size: large;
+    font-weight: bolder;
+    text-align: center;
 
-        p, a {
-            color: white;
-            text-decoration: none;
-        }
+    p,
+    a {
+      color: white;
+      text-decoration: none;
     }
+
+    a:hover {
+
+    }
+  }
 }

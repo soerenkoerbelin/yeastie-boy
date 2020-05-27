@@ -1,5 +1,7 @@
+@import "./../../../App.scss";
+
 .header-container {
-  background-color: #92caf3;
+  background-color: $baby-blue;
   color: white;
   height: 100%;
   padding: 0.25em;
@@ -16,7 +18,16 @@
   justify-content: flex-start;
   align-items: center;
   padding-left: 1em;
+
+  .headline {
+    padding-left: .5em;
+  }
+
 }
+    .icon-container {
+      width: 32px;
+      height: 32px;
+    }
 
 .header-right {
   padding-right: 1em;
@@ -39,7 +50,7 @@
   background-image: radial-gradient(
     circle at 10px -5px,
     transparent 12px,
-    #92caf3 13px
+    $baby-blue 13px
   );
 }
 .wave::after {
@@ -53,7 +64,7 @@
   background-size: 40px 20px;
   background-image: radial-gradient(
     circle at 10px 16px,
-    #92caf3 12px,
+    $baby-blue 12px,
     transparent 13px
   );
 }

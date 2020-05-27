@@ -1,3 +1,5 @@
+@import "./../../../App.scss";
+
 .input-container {
   display: flex;
   flex-direction: column;
@@ -8,7 +10,7 @@
   width: 8em;
   font-size: 0.85em;
   border: none;
-  border-bottom: 1px dotted #92caf3;
+  border-bottom: 1px dotted $baby-blue;
 }
 
 .basic-input:focus {

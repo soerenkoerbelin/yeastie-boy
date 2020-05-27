@@ -1,8 +1,13 @@
+@import "./../../../App.scss";
+
 .dotted-button {
   font-size: 1.2em;
+  font-weight: bolder;
   background-color: white;
   border-radius: 25px;
-  border: 1px dotted #92caf3;
+  border: 1px dotted $baby-blue;
+  padding: .25em 1em;
+  outline: none;
 }
 
 .dotted-button:hover {

@@ -9,7 +9,7 @@ function Header() {
       <div className="header-container">
         <div className="header-left">
           <Icon icon="yeast32" />
-          <h2>YEASTIE BOY</h2>
+          <h2 className="headline">YEASTIE BOY</h2>
         </div>
         <div className="header-right">
           <h3>fo' yo' dough</h3>

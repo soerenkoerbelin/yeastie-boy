@@ -28,22 +28,22 @@ function Home() {
       <div className="selection-panel">
         <div className="selection-item">
           <Link to="/recipe">
-            <p>I have a recipe</p>
+            <p>I have a <br/> recipe</p>
           </Link>
         </div>
         <div className="selection-item">
           <Link to="/experimental">
-            <p>I want to experiment</p>
+            <p>I want to <br/> experiment</p>
           </Link>
         </div>
         <div className="selection-item">
           <Link to="/">
-            <p>Convert dry to fresh yeast</p>
+            <p>Dry Yeast / Salt <br/> Calculator</p>
           </Link>
         </div>
         <div className="selection-item">
           <Link to="/">
-            <p>Knowledge base</p>
+            <p>Knowledge <br/> base</p>
           </Link>
         </div>
       </div>

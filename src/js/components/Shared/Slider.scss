@@ -1,3 +1,5 @@
+@import "./../../../App.scss";
+
 .slider-container {
     display: flex;
     flex-direction: column;
@@ -18,7 +20,7 @@
 
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    background: #92caf3;
+    background: $baby-blue;
     height: 1.5em;
     width: 1.5em;
     margin-top: -.5em;
