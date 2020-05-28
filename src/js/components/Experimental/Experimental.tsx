@@ -10,7 +10,7 @@ function Experimental() {
       <div className="top-row">
         <h1>Experimental</h1>
         <Link to="/">
-          <DottedButton name="back" />
+          <DottedButton name="back" width="4" height="2" radius="0" />
         </Link>
       </div>
       <p>This section is still under construction!</p>

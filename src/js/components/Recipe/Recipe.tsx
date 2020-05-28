@@ -8,9 +8,9 @@ import DottedButton from "../Shared/DottedButton";
 
 /*
 TODOS
-- Recalculate on state changes
 - use types
 - Give hints
+- Set Limits, e.g. increase yeast to > 42 gr not possible
 
 - only change temp is working correctly right now!
 */
@@ -28,7 +28,10 @@ function Recipe() {
   const [aResult, setAResult] = useState(0);
   const [bResult, setBResult] = useState(0);
 
-  const YEAST_CONST: number = -0.1386294;
+  const TOR_CONST: number = -0.1386294;
+  const TOR_FACTOR_CONST: number = 48;
+  const YEAST_CONST: number = -0.143841;
+  const YEAST_FACTOR_CONST: number = 41.009713;
 
   const descText = (
     <p>
@@ -36,7 +39,8 @@ function Recipe() {
       temperature by changing one of the values. In case you are using older
       yeast or some sour dough, we implemented two check boxes to take this into
       account.<br></br>
-      Use the sliders to configure your current setup.
+      Use the sliders to configure your current setup and press calculate to get
+      your results!
     </p>
   );
 
@@ -44,18 +48,15 @@ function Recipe() {
 
   if (aResult !== 0 && bResult !== 0) {
     result = (
-      <div>
-          <h3>Here are your results! You can</h3>
-        <div className="center-container">
-          <p>
-            Change the <b>{aType}</b> to <b>{aResult}</b>
-          </p>
-        </div>
-        <div className="center-container">
-          <p>
-            Change the <b>{bType}</b> to <b>{bResult}</b>
-          </p>
-        </div>
+      <div className="center-vertically">
+        <h3>Here are your results!</h3>
+        <h3>You can: </h3>
+        <p>
+          Change the <b>{aType}</b> to <b>{aResult}</b>
+        </p>
+        <p>
+          Change the <b>{bType}</b> to <b>{bResult}</b>
+        </p>
       </div>
     );
   } else {
@@ -92,52 +93,50 @@ function Recipe() {
     setChangerAmount(e.target.value);
   }
 
-  function calculateFactor() {
-    return time / Math.exp(YEAST_CONST * temp);
+  function tempTimePrediction(newTOR: number) {
+    return Math.floor(Math.log(newTOR / TOR_FACTOR_CONST) / TOR_CONST);
   }
 
-  function timeTempYeastPrediction(newTOR: number, factor: number) {
-    return Math.floor(Math.log(newTOR / factor) / YEAST_CONST);
+  function yeastTimePrediciton(newYeastAmount: number) {
+    return Math.floor(
+      Math.log(newYeastAmount / YEAST_FACTOR_CONST) / YEAST_CONST
+    );
   }
 
   function changeTime() {
     let newTOR: number;
 
-    const factor = calculateFactor();
-
     if (increase === "increase") {
       newTOR = +time + +changerAmount;
     } else {
       newTOR = +time + -changerAmount;
     }
 
-    return timeTempYeastPrediction(newTOR, factor);
+    return tempTimePrediction(newTOR);
   }
 
   function changeYeast() {
-    let newTOR: number;
+    let newYeastAmount: number;
 
     if (increase === "increase") {
-      newTOR = +time + +changerAmount;
-      return yeast / newTOR;
+      newYeastAmount = +yeast + +changerAmount;
     } else {
-      newTOR = +time + -changerAmount;
-      return yeast * time;
+      newYeastAmount = +yeast + -changerAmount;
     }
+
+    return yeastTimePrediciton(newYeastAmount);
   }
 
   function changeTemp() {
     let newTOR: number;
 
-    const factor = calculateFactor();
-
     if (increase === "increase") {
       newTOR = +time + +changerAmount;
     } else {
       newTOR = +time + -changerAmount;
     }
 
-    return Math.floor(Math.log(newTOR / factor) / YEAST_CONST);
+    return Math.floor(Math.log(newTOR / TOR_FACTOR_CONST) / TOR_CONST);
   }
 
   function calculate() {
@@ -181,7 +180,9 @@ function Recipe() {
           <DottedButton name="back" />
         </Link>
       </div>
+
       {descText}
+
       <div className="content">
         <form>
           <h3>My current setup: </h3>
@@ -214,7 +215,18 @@ function Recipe() {
           />
 
           <div className="center-container">
-            <p>I want to <b>change</b> the: </p>
+            <p>I want to</p>
+            <select
+              value={increase}
+              onChange={(e: any) => handleIncreaseValue(e)}
+            >
+              <option value="increase">Increase</option>
+              <option value="decrease">Decrease</option>
+            </select>
+          </div>
+
+          <div className="center-container">
+            <p>the</p>
             <select
               value={changer}
               onChange={(e: any) => handleChangerValue(e)}
@@ -226,18 +238,9 @@ function Recipe() {
           </div>
 
           <div className="center-container">
-            <p>I want to <b>{increase}</b>: </p>
-            <select
-              value={increase}
-              onChange={(e: any) => handleIncreaseValue(e)}
-            >
-              <option value="increase">Increase</option>
-              <option value="decrease">Decrease</option>
-            </select>
-          </div>
-
-          <div className="center-container">
-            <p>By the <b>amount</b> of: </p>
+            <p>
+              By the <b>amount</b> of:{" "}
+            </p>
             <Slider
               id="change-input"
               min="0"

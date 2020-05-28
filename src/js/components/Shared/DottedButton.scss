@@ -6,10 +6,7 @@
   background-color: white;
   border-radius: 25px;
   border: 1px dotted $baby-blue;
-  padding: .25em 1em;
   outline: none;
-}
-
-.dotted-button:hover {
-  transform: translateY(2.5px);
+  height: 2.25rem;
+  width: fit-content;
 }
