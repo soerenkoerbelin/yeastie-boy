@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import "./Calculator.scss";
+import Salt from "./Salt/Salt";
+import Yeast from "./Yeast/Yeast";
+
 import DottedButton from "../Shared/DottedButton";
 import BigSwitch from "../Shared/BigSwitch";
 
@@ -18,17 +21,9 @@ function Calculator() {
   }
 
   if (changeCalculationType) {
-    calculationType = (
-      <div>
-        <p>salt</p>
-      </div>
-    );
+    calculationType = <Salt />;
   } else {
-    calculationType = (
-      <div>
-        <p>yeast</p>
-      </div>
-    );
+    calculationType = <Yeast />;
   }
 
   return (
@@ -36,7 +31,7 @@ function Calculator() {
       <div className="top-row">
         <h1>Calculator</h1>
         <Link to="/">
-          <DottedButton name="back" width="4" height="2" radius="75" />
+          <DottedButton name="back" width="4" height="2" radius="15" />
         </Link>
       </div>
       <div className="content">
@@ -50,9 +45,7 @@ function Calculator() {
           amount of salt needed for your planned dough.
         </p>
         <div className="center-container">
-          <p>
-            Tap to change the type of calculation
-          </p>
+          <p>Tap to change the type of calculation</p>
           <div>
             <BigSwitch onChange={(e: any) => handleChange(e)} />
           </div>

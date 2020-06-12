@@ -2,6 +2,13 @@ import React from "react";
 
 import "./BigSwitch.scss";
 
+/**
+ * 
+ * @param props 
+ * 
+ * TODO: pass in switch content as props
+ */
+
 function BigSwitch(props: any) {
   return (
     <div className="onoffswitch">
