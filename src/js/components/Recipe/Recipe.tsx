@@ -30,12 +30,16 @@ function Recipe() {
 
   const TOR_CONST: number = -0.1386294;
   const TOR_FACTOR_CONST: number = 48;
+
   const YEAST_CONST: number = -0.143841;
   const YEAST_FACTOR_CONST: number = 41.009713;
 
+  const TEMP_CONST: number = -0.12;
+  const TEMP_FACTOR_CONST: number = 45;
+
   const descText = (
     <p>
-      Here you are able to recalculate the rise time, the amount of flour or the
+      Here you are able to recalculate the rise time, the amount of yeast or the
       temperature by changing one of the values. In case you are using older
       yeast or some sour dough, we implemented two check boxes to take this into
       account.<br></br>
@@ -97,10 +101,14 @@ function Recipe() {
     return Math.floor(Math.log(newTOR / TOR_FACTOR_CONST) / TOR_CONST);
   }
 
-  function yeastTimePrediciton(newYeastAmount: number) {
+  function yeastTimePrediction(newYeastAmount: number) {
     return Math.floor(
       Math.log(newYeastAmount / YEAST_FACTOR_CONST) / YEAST_CONST
     );
+  }
+
+  function timeTempPrediction(newTemp: number) {
+    return Math.floor(Math.log(newTemp / TEMP_FACTOR_CONST) / TEMP_CONST);
   }
 
   function changeTime() {
@@ -124,19 +132,19 @@ function Recipe() {
       newYeastAmount = +yeast + -changerAmount;
     }
 
-    return yeastTimePrediciton(newYeastAmount);
+    return yeastTimePrediction(newYeastAmount);
   }
 
   function changeTemp() {
-    let newTOR: number;
+    let newTemp: number;
 
     if (increase === "increase") {
-      newTOR = +time + +changerAmount;
+      newTemp = +temp + +changerAmount;
     } else {
-      newTOR = +time + -changerAmount;
+      newTemp = +temp + -changerAmount;
     }
 
-    return Math.floor(Math.log(newTOR / TOR_FACTOR_CONST) / TOR_CONST);
+    return Math.floor(Math.log(newTemp / TOR_FACTOR_CONST) / TOR_CONST);
   }
 
   function calculate() {

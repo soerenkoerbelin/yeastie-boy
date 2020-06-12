@@ -37,12 +37,12 @@ function Home() {
           </Link>
         </div>
         <div className="selection-item">
-          <Link to="/">
+          <Link to="/calculator">
             <p>Dry Yeast / Salt <br/> Calculator</p>
           </Link>
         </div>
         <div className="selection-item">
-          <Link to="/">
+          <Link to="/knowledge-base">
             <p>Knowledge <br/> base</p>
           </Link>
         </div>

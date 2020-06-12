@@ -7,6 +7,8 @@ const Recipe = lazy(() => import("./js/components/Recipe/Recipe"));
 const Experimental = lazy(() =>
   import("./js/components/Experimental/Experimental")
 );
+const Calculator = lazy(() => import("./js/components/Calculator/Calculator"));
+const KnowledgeBase = lazy(() => import("./js/components/KnowledgeBase/KnowledgeBase"));
 const About = lazy(() => import("./js/components/About/About"));
 const Header = lazy(() => import("./js/components/Header/Header"));
 const Footer = lazy(() => import("./js/components/Footer/Footer"));
@@ -29,6 +31,12 @@ function App() {
               </Route>
               <Route exact path="/experimental">
                 <Experimental />
+              </Route>
+              <Route exact path="/calculator">
+                <Calculator />
+              </Route>
+              <Route exact path="/knowledge-base">
+                <KnowledgeBase />
               </Route>
               <Route exact path="/about">
                 <About />
