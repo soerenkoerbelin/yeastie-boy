@@ -11,24 +11,24 @@ function Calculator() {
 
   function handleChange(e: any) {
     if (changeCalculationType === false) {
-        setChangeCalculationType(true);
+      setChangeCalculationType(true);
     } else {
-        setChangeCalculationType(false);
+      setChangeCalculationType(false);
     }
   }
 
   if (changeCalculationType) {
-        calculationType = (
-          <div>
-            <p>salt</p>
-          </div>
-        );
+    calculationType = (
+      <div>
+        <p>salt</p>
+      </div>
+    );
   } else {
-        calculationType = (
-          <div>
-            <p>yeast</p>
-          </div>
-        );
+    calculationType = (
+      <div>
+        <p>yeast</p>
+      </div>
+    );
   }
 
   return (
@@ -49,8 +49,15 @@ function Calculator() {
           Another thing you are able to do in this section is to calculate the
           amount of salt needed for your planned dough.
         </p>
-        <BigSwitch checked={changeCalculationType} onChange={(e: any) => handleChange(e)} />
-        { calculationType }
+        <div className="center-container">
+          <p>
+            Tap to change the type of calculation
+          </p>
+          <div>
+            <BigSwitch onChange={(e: any) => handleChange(e)} />
+          </div>
+          <div>{calculationType}</div>
+        </div>
       </div>
     </div>
   );
